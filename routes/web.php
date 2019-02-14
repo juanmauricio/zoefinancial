@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/agentmatches', 'UsersController@findmatches');
 Auth::routes();
-
+Route::get('/agentmatches/{id}', 'UsersController@findmatches');
 Route::get('/home', 'HomeController@index')->name('home');

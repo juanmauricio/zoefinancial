@@ -80,8 +80,27 @@
             @endif
 
             <div class="content">
+            <table>
+                <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Distance</th>
+                </tr>
+                @foreach($contacts as $contact)
+                    <tr>
+                    <td>{!! $contact->id !!} </td>
+                    <td>{!! $contact->name !!}</td>
+                    <td>{!! $contact->lastname !!}</td>
+                    <td>{!! $contact->distance !!}</td>
+                    </tr>
+                @endforeach
+            </table>
+
+
+
+
                 <div class="title m-b-md">
-                    matches...
                 </div>
                 <div class="links">
                 </div>

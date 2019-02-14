@@ -23,6 +23,8 @@
 
                                 @if (Auth::user()->profession)
                                     AGENT
+                                    <a class="nav-link " href="/agentmatches/{{Auth::user()->id}}">{{ __('Find matches') }}</a>
+                                </li>
                                 @else
                                     NORMAL USER
                                 @endif

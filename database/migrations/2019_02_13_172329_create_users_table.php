@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('gender');
             $table->string('zip_code');
             $table->string('profession');
+            $table->string('geographicdata');  
+            $table->string('lat'); 
+            $table->string('lng');                                   
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

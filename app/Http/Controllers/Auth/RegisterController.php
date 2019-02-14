@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use GuzzleHttp\Client;
 
 class RegisterController extends Controller
 {
@@ -60,6 +61,33 @@ class RegisterController extends Controller
     }
 
     /**
+     * Gets geographical data from GOOGLE's Geocoding API based on ZIP code.
+     *
+     * @param  string  $zipcode
+     * @return $geodata
+     */
+    protected function getGeographicalData(string $zipcode){
+        $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/geocode/']);
+        $response = $client->get('https://maps.googleapis.com/maps/api/geocode/json?address=' . $zipcode . '&key=AIzaSyBZw_lLpLQe1jJErMTEIOLBK1nlWnfsu7g');
+        $geodata = $response->getBody()->getContents();
+        return $geodata;
+    }
+
+    /**
+     * Obtains the latitude and longitude from data returned by GOOGLE's Geocoding API
+     *
+     * @param  array  $data
+     * @return array  $result3
+     */
+    protected function getLatLon(string $geodata){
+        $result = json_decode($geodata, true);
+        $result1[]=$result['results'][0];
+        $result2[]=$result1[0]['geometry'];
+        $result3[]=$result2[0]['location'];
+        return $result3[0];
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -67,6 +95,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $geodata = $this->getGeographicalData($data['zipcode']);
+        $coordinates = $this->getLatLon($geodata);
+        $lat = $coordinates['lat'];
+        $lng = $coordinates['lng'];
+        // dd($lat. '-' . $lon);
+
         return User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
@@ -76,6 +110,9 @@ class RegisterController extends Controller
             'profession' => $data['profession'],                                  
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'geographicdata' => $geodata,
+            'lat' => $lat,
+            'lng' => $lng
         ]);
     }
 }
