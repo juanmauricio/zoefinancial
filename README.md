@@ -81,10 +81,10 @@ When an Agent logs in the system a link `find matches` will be displayed. It wil
 
 Example:
 
-Id	Name	Last name	Distance
-10	JUAN M  LOPEZ   	54.465664752528
-1	Juan	NNN	        6084.2544909246
-2	JUAN    LOPEZ   	6084.2544909246
+Id	Name	Last name	Distance<br>
+10	JUAN M  LOPEZ   	54.465664752528<br>
+1	Juan	NNN	        6084.2544909246<br>
+2	JUAN    LOPEZ   	6084.2544909246<br>
 
 
 ## Requirements
