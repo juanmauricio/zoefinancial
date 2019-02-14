@@ -26,7 +26,7 @@
                                     <a class="nav-link " href="/agentmatches/{{Auth::user()->id}}">{{ __('Find matches') }}</a>
                                 </li>
                                 @else
-                                    NORMAL USER
+                                    <b>CONTACT</b>
                                 @endif
 
                             @endauth
@@ -45,7 +45,7 @@
                             <div class="col-sm-10">{{ Auth::user()->age }}</div>
                         </div>
                         <div class="row justify-content-left">
-                            <div class="col-sm-2">Age:</div>
+                            <div class="col-sm-2">Gender:</div>
                             <div class="col-sm-10">{{ Auth::user()->gender }}</div>
                         </div>
                         <div class="row justify-content-left">
