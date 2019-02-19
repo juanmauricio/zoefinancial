@@ -28,6 +28,10 @@ class UsersController extends Controller
         return view('agentmatches')->with('contacts', $contacts);
     }
 
+    public function testFunction(){
+        
+    }
+
     /**
      * Calculates distance in miles given lat & lng coordinates fro 2 points.
      *
