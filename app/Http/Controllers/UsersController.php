@@ -32,6 +32,10 @@ class UsersController extends Controller
         
     }
 
+    public function testFunction_created_on_master(){
+        
+    }
+
     /**
      * Calculates distance in miles given lat & lng coordinates fro 2 points.
      *
